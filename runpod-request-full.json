@@ -1,0 +1,396 @@
+{
+  "input": {
+    "workflow": {
+      "120": {
+        "inputs": {},
+        "class_type": "MultiTalkModelLoader",
+        "_meta": {
+          "title": "MultiTalkModelLoader"
+        }
+      },
+      "122": {
+        "inputs": {
+          "block_swap_args": [
+            "134",
+            0
+          ],
+          "lora": [
+            "138",
+            0
+          ],
+          "multitalk_model": [
+            "120",
+            0
+          ]
+        },
+        "class_type": "WanVideoModelLoader",
+        "_meta": {
+          "title": "WanVideoModelLoader"
+        }
+      },
+      "125": {
+        "inputs": {
+          "audio": "เสยงสปอรตเฉากวยชากงราว.mp3"
+        },
+        "class_type": "LoadAudio",
+        "_meta": {
+          "title": "LoadAudio"
+        }
+      },
+      "128": {
+        "inputs": {
+          "model": [
+            "122",
+            0
+          ],
+          "image_embeds": [
+            "192",
+            0
+          ],
+          "text_embeds": [
+            "314",
+            0
+          ],
+          "multitalk_embeds": [
+            "194",
+            0
+          ]
+        },
+        "class_type": "WanVideoSampler",
+        "_meta": {
+          "title": "WanVideoSampler"
+        }
+      },
+      "129": {
+        "inputs": {},
+        "class_type": "WanVideoVAELoader",
+        "_meta": {
+          "title": "WanVideoVAELoader"
+        }
+      },
+      "131": {
+        "inputs": {
+          "images": [
+            "309",
+            0
+          ],
+          "audio": [
+            "125",
+            0
+          ],
+          "frame_rate": 24,
+          "loop_count": 0,
+          "filename_prefix": "WanVideo2_1_InfiniteTalk",
+          "format": "video/h264-mp4",
+          "pix_fmt": "yuv420p",
+          "crf": 19,
+          "save_metadata": true,
+          "trim_to_audio": false,
+          "pingpong": false,
+          "save_output": false,
+          "videopreview": {
+            "hidden": false,
+            "paused": false,
+            "params": {
+              "filename": "WanVideo2_1_InfiniteTalk_00001-audio.mp4",
+              "subfolder": "",
+              "type": "temp",
+              "format": "video/h264-mp4",
+              "frame_rate": 24,
+              "workflow": "WanVideo2_1_InfiniteTalk_00001.png",
+              "fullpath": "/workspace/ComfyUI/temp/WanVideo2_1_InfiniteTalk_00001-audio.mp4"
+            }
+          }
+        },
+        "class_type": "VHS_VideoCombine",
+        "_meta": {
+          "title": "VHS_VideoCombine"
+        }
+      },
+      "134": {
+        "inputs": {},
+        "class_type": "WanVideoBlockSwap",
+        "_meta": {
+          "title": "WanVideoBlockSwap"
+        }
+      },
+      "137": {
+        "inputs": {},
+        "class_type": "DownloadAndLoadWav2VecModel",
+        "_meta": {
+          "title": "DownloadAndLoadWav2VecModel"
+        }
+      },
+      "138": {
+        "inputs": {},
+        "class_type": "WanVideoLoraSelect",
+        "_meta": {
+          "title": "WanVideoLoraSelect"
+        }
+      },
+      "177": {
+        "inputs": {},
+        "class_type": "WanVideoTorchCompileSettings",
+        "_meta": {
+          "title": "WanVideoTorchCompileSettings"
+        }
+      },
+      "192": {
+        "inputs": {
+          "vae": [
+            "129",
+            0
+          ],
+          "start_image": [
+            "291",
+            0
+          ],
+          "clip_embeds": [
+            "237",
+            0
+          ],
+          "width": [
+            "291",
+            1
+          ],
+          "height": [
+            "291",
+            2
+          ]
+        },
+        "class_type": "WanVideoImageToVideoMultiTalk",
+        "_meta": {
+          "title": "WanVideoImageToVideoMultiTalk"
+        }
+      },
+      "194": {
+        "inputs": {
+          "wav2vec_model": [
+            "137",
+            0
+          ],
+          "audio_1": [
+            "302",
+            0
+          ],
+          "num_frames": [
+            "270",
+            0
+          ]
+        },
+        "class_type": "MultiTalkWav2VecEmbeds",
+        "_meta": {
+          "title": "MultiTalkWav2VecEmbeds"
+        }
+      },
+      "237": {
+        "inputs": {
+          "clip_vision": [
+            "315",
+            0
+          ],
+          "image_1": [
+            "291",
+            0
+          ]
+        },
+        "class_type": "WanVideoClipVisionEncode",
+        "_meta": {
+          "title": "WanVideoClipVisionEncode"
+        }
+      },
+      "245": {
+        "inputs": {},
+        "class_type": "INTConstant",
+        "_meta": {
+          "title": "Width"
+        }
+      },
+      "246": {
+        "inputs": {},
+        "class_type": "INTConstant",
+        "_meta": {
+          "title": "Height"
+        }
+      },
+      "270": {
+        "inputs": {},
+        "class_type": "INTConstant",
+        "_meta": {
+          "title": "Max frames"
+        }
+      },
+      "281": {
+        "inputs": {
+          "image": [
+            "284",
+            0
+          ],
+          "width": [
+            "245",
+            0
+          ],
+          "height": [
+            "246",
+            0
+          ]
+        },
+        "class_type": "ImageResizeKJv2",
+        "_meta": {
+          "title": "ImageResizeKJv2"
+        }
+      },
+      "284": {
+        "inputs": {
+          "image": "freepik__use-img1-as-the-base-replace-the-scene-with-a-brig__34280.jpeg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "291": {
+        "inputs": {
+          "image": [
+            "281",
+            0
+          ]
+        },
+        "class_type": "GetImageSizeAndCount",
+        "_meta": {
+          "title": "GetImageSizeAndCount"
+        }
+      },
+      "293": {
+        "inputs": {
+          "source": [
+            "194",
+            2
+          ]
+        },
+        "class_type": "PreviewAny",
+        "_meta": {
+          "title": "PreviewAny"
+        }
+      },
+      "300": {
+        "inputs": {},
+        "class_type": "Wav2VecModelLoader",
+        "_meta": {
+          "title": "Wav2VecModelLoader"
+        }
+      },
+      "301": {
+        "inputs": {},
+        "class_type": "MelBandRoFormerModelLoader",
+        "_meta": {
+          "title": "MelBandRoFormerModelLoader"
+        }
+      },
+      "302": {
+        "inputs": {
+          "model": [
+            "301",
+            0
+          ],
+          "audio": [
+            "125",
+            0
+          ]
+        },
+        "class_type": "MelBandRoFormerSampler",
+        "_meta": {
+          "title": "MelBandRoFormerSampler"
+        }
+      },
+      "309": {
+        "inputs": {
+          "samples": [
+            "128",
+            0
+          ]
+        },
+        "class_type": "WanVideoPassImagesFromSamples",
+        "_meta": {
+          "title": "WanVideoPassImagesFromSamples"
+        }
+      },
+      "311": {
+        "inputs": {
+          "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "type": "wan",
+          "device": "default"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "312": {
+        "inputs": {
+          "clip": [
+            "311",
+            0
+          ],
+          "text": "the man is presenting and selling product in thai street market"
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "313": {
+        "inputs": {
+          "clip": [
+            "311",
+            0
+          ],
+          "text": "a woman is singingbright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards"
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "314": {
+        "inputs": {
+          "positive": [
+            "312",
+            0
+          ],
+          "negative": [
+            "313",
+            0
+          ]
+        },
+        "class_type": "WanVideoTextEmbedBridge",
+        "_meta": {
+          "title": "WanVideoTextEmbedBridge"
+        }
+      },
+      "315": {
+        "inputs": {
+          "clip_name": "clip_vision_h.safetensors"
+        },
+        "class_type": "CLIPVisionLoader",
+        "_meta": {
+          "title": "CLIPVisionLoader"
+        }
+      }
+    },
+    "images": [
+      {
+        "name": "freepik__use-img1-as-the-base-replace-the-scene-with-a-brig__34280.jpeg",
+        "image": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+      }
+    ],
+    "audios": [
+      {
+        "name": "เสยงสปอรตเฉากวยชากงราว.mp3",
+        "audio": "/+MYxAAAAANIAAAAAExBTUUzLjk4LjIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    ],
+    "comfy_org_api_key": null
+  },
+  "webhook": "https://example.com/runpod-webhook"
+}

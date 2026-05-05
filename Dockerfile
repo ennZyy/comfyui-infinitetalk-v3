@@ -26,3 +26,6 @@ RUN HF_TOKEN=$HF_TOKEN comfy model download --url 'https://huggingface.co/Comfy-
 
 # user-provided inputs override the auto-generated placeholders above.
 RUN wget --progress=dot:giga -O '/comfyui/input/freepik__use-img1-as-the-base-replace-the-scene-with-a-brig__34280.jpeg' "https://cool-anteater-319.convex.cloud/api/storage/1c588fd5-da50-4f2e-bcb0-be1e6a4a7068"
+
+# Patched handler: JSON field "audios" (base64) -> /comfyui/input (LoadAudio, etc.)
+COPY handler.py /handler.py
