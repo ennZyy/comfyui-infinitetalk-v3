@@ -6,10 +6,15 @@ FROM runpod/worker-comfyui:5.8.4-base
 ARG HF_TOKEN=""
 
 # install custom nodes into comfyui
-RUN comfy node install --exit-on-fail ComfyUI-WanVideoWrapper@058286fc0f3b0651a2f6b68309df3f06e8332cc0 --mode remote
+# NOTE: MultiTalk nodes are missing on older WanVideoWrapper commits.
+# Keep this pinned to a known-good commit that contains MultiTalkModelLoader.
+RUN comfy node install --exit-on-fail ComfyUI-WanVideoWrapper@d18cdb18597f525ef8d613a0cb447080fbab8fce --mode remote
 RUN comfy node install --exit-on-fail comfyui-kjnodes@e435e999e4b1a828a6b5f6d8f037e66f4a798324
 RUN comfy node install --exit-on-fail ComfyUI-MelBandRoFormer@b68d9077815387b64d596f8c39607052b95b6eba
 RUN comfy node install --exit-on-fail comfyui-videohelpersuite@0a75c7958fe320efcb052f1d9f8451fd20c730a8
+
+# Ensure optional MultiTalk module imports do not get skipped due to missing deps.
+RUN python -m pip install --no-cache-dir --upgrade accelerate transformers scipy
 
 # download models into comfyui
 RUN HF_TOKEN=$HF_TOKEN comfy model download --url 'https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/InfiniteTalk/Wan2_1-InfiniTetalk-Single_fp16.safetensors' --relative-path models/diffusion_models --filename 'wav2vec2-chinese-base_fp16.safetensors'

@@ -2,7 +2,9 @@
   "input": {
     "workflow": {
       "120": {
-        "inputs": {},
+        "inputs": {
+          "model": "Wan2_1-InfiniteTalk-Single_fp8_e4m3fn_scaled_KJ.safetensors"
+        },
         "class_type": "MultiTalkModelLoader",
         "_meta": {
           "title": "MultiTalkModelLoader"
